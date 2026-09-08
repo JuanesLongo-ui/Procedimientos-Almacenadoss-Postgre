@@ -4,6 +4,7 @@ CREATE OR REPLACE PROCEDURE ventas.consultar_stock_producto (
     OUT p_nombre_producto VARCHAR(120),
     OUT p_stock_producto INTEGER,
     OUT p_activo_producto VARCHAR(30)
+	
 )
 LANGUAGE plpgsql
 AS $$
@@ -23,7 +24,7 @@ BEGIN
         p_stock_producto := NULL;
         p_activo_producto := FALSE;
 		
-    ELSIF p_stock = 0 THEN
+    ELSIF p_stock_producto = 0 THEN
         p_activo_producto := FALSE;
 		
     ELSE
@@ -38,3 +39,5 @@ $$;
 
 CALL ventas.consultar_stock_producto(1, NULL, NULL, NULL);
 CALL ventas.consultar_stock_producto(999, NULL, NULL, NULL);
+
+SELECT * FROM ventas.productos
